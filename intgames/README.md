@@ -87,3 +87,9 @@ A demo can be watched at ~~[Youtube : Crocks Game]()~~
 ```sh
 USAGE : In your terminal, type app.py -h to view the commands available for the game
 ```
+
+## Notes from the developer
+Created with love, for python programming,
+
+Thanks for reading, and have a blessed day,
+@krigjo25
