@@ -1,10 +1,7 @@
-# PY Console games
-
-## Overview
-
-`console-intgames-py` Is a collection of simple console-based games written in PY.
+# Integer Console games
+Is a collection of simple console-based games written in PY.
 The project is designed to demostrate basic game development conseps and provide a fun way to practive Python programming.
-The games is written and created by [krigjo25](), it is a GNU General Public License v3.0. Some of the games are created as assignments from xCS50 Introduction to Python at Harvard X program Others are created on a free will as converted from a language to another.
+The games is written and created by [krigjo25](), Some of the games are created as assignments from xCS50 Introduction to Python at Harvard X program Others are created on a free will as converted from a language to another.
 
 ## Games included
 1. **The Little Proffessor** - A game where the player gets two ints to calculate and type in the answer.
@@ -33,9 +30,9 @@ The requirements can be found at requirements.txt
 
 ### Guess the number
 
-* The game generates a random number within a specified range.
+* The computer generates a random number within a specified range.
 * You will have to guess the number.
-* If you guess correctly, You'll gain a point after few points the level will increase.
+* If you guess correctly, You'll gain a point after few points the level, health points and difficulty will increase.
 * If you guess incorrectly, You'll loose a Health Point.
 
 Based on level the difficulty may vary, but the user gets a hint if the user types in a less or greater than answer.
@@ -63,9 +60,7 @@ assignment at CS50P - Introduction to Python Programming.
 USAGE : In your terminal, type __main__.py -h to view the commands available for the game
 ```
  
-
-## Testing Framework
-
+## Testing Framework / Data Sets
 This project uses the testing framework <strong>pytest</strong>.
 
 ```sh
@@ -75,21 +70,3 @@ USEAGE : Type in your terminal pytest <strong>test_intgame -s</strong> to see a 
 
 USEAGE : Type in your terminal pytest <strong>test_intgame -k "classname"</strong>, in order to test the classes
 ```
-
-
-## Credentials
-
-### LICENSE
-This project is licensed under the GNU v3.0.
-See the [LICENSE](LICENSE) file for details.
-
-### Contact
-
-For any questions or suggestions, please open an issue or contact the me at [e-mail](mailto:krigjo25@outlook.com).
-
-### Responsories
-
--   [pytest - by pytest team](https://github.com/pytest-dev/pytest)
--   [random - by Python developer team]()
--   [requests - by Kenneth Reitz](https://requests.readthedocs.io/en/latest/)<nt>
-
