@@ -39,6 +39,7 @@ USEAGE : Type in your terminal pytest <strong>testing/</strong> In order to test
 USEAGE : Type in your terminal pytest <strong>test_intgame -s</strong> to see a more detailed test.
 
 USEAGE : Type in your terminal pytest <strong>test_intgame -k "classname"</strong>, in order to test the classes
+USEAGE : Type in your terminal pytest pytest --html=report.htm
 ```
 
 ## Credentials
