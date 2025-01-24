@@ -29,6 +29,18 @@ pip install -r requirements.txt
 ```sh
 python app.py
 ```
+
+## Testing Framework / Data Sets
+This project uses the testing framework <strong>pytest</strong>.
+
+```sh
+USEAGE : Type in your terminal pytest <strong>testing/</strong> In order to test the whole dictionary
+
+USEAGE : Type in your terminal pytest <strong>test_intgame -s</strong> to see a more detailed test.
+
+USEAGE : Type in your terminal pytest <strong>test_intgame -k "classname"</strong>, in order to test the classes
+```
+
 ## Credentials
 
 ### LICENSE
