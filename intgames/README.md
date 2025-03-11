@@ -1,6 +1,6 @@
 # Integer Console games
-Is a collection of simple console-based games written in PY.
-The project is designed to demostrate basic game development conseps and provide a fun way to practice Python programming.
+Is a collection of simple console-based games written in Python.
+The project is designed to demostrate basic game development.
 
 ## Games included
 1. **The Little Proffessor** 
@@ -72,7 +72,7 @@ The application was implemented as an assignment at GetAcademy and translated in
 
 Please respect, and keep the [Academic Honesty Policy](https://cs50.harvard.edu/x/2023/honesty/) in mind.
 
-A demo can be watched at ~~[Youtube : Crocks Game]()~~
+~~A demo can be watched at [Youtube : Crocks Game]()~~
 
 ### Game rules
 - For every round the game will generate two random numbers.

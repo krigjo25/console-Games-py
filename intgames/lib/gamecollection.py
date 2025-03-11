@@ -1,11 +1,13 @@
 #   Importing Responsories
-import sys
+import sys, time as t
 
 from lib.dict.game_over import GameOver
 from lib.config.config import GameConfig
-   
 
-from string import punctuation
+#   Initializing the Logger
+logger = GameConfig().logger
+logger = logger.FileHandler()
+
 # Refactoring the code
 class LittleProfessor(GameConfig):
 
@@ -15,6 +17,10 @@ class LittleProfessor(GameConfig):
         The user has to solve the equation within the range of 1- x.
         if the user's health points are zero, the game will end.
     """
+
+    def __init__(self):
+        self.logger = logger
+
     def run(self): 
 
          #   Initializing Game Configurations
@@ -59,6 +65,9 @@ class GuessTheNumber(GameConfig):
         if the user's health points are zero, the game will end.
 
     """
+    def __init__(self):
+        self.logger = logger
+
     def run(self):
 
         #   Game Configurations
@@ -66,10 +75,15 @@ class GuessTheNumber(GameConfig):
         
         n = self.GenerateIntegers(self.Level)
 
+        self.logger.info(f"{self.__class__.__name__}: The game has started !")
+
+        #   Start the timer
+        start = t.perf_counter()
+
         while True:
 
             #   Ensure that the user has zero health points left
-            self.QuitGame()
+            self.QuitGame(self.HP)
 
             #   Prompting the user
             answer = input(f'{n[1]} ')
@@ -86,6 +100,9 @@ class GuessTheNumber(GameConfig):
                 #   Decrease the self.HP by one and notify the user about the incorrect answer
                 self.IncorrectAnswer(e)
 
+                self.logger.warn(f"{self.__class__.__name__}: {e}")
+                
+
             if int(answer) == n[0]: 
                     
                     #   Notify the user about the correct answer
@@ -99,6 +116,12 @@ class GuessTheNumber(GameConfig):
                 #   Notify the user about the incorrect answer and decrease the self.HP by one
                 self.IncorrectAnswer('Too low, guess higher') if n[0] > int(answer) else self.IncorrectAnswer('Too high, guess lower')
 
+                self.logger.warn(f"{self.__class__.__name__}:")
+
+            period = t.perf_counter() - start
+
+            self.logger.info(f"{self.__class__.__name__}: GameLevel : \t lvl : {self.Level} Current Score: {self.Score } / {self.CompareScore},  {period}")
+
 class Crocks(GameConfig):
     """
         Crockodile Game
@@ -107,6 +130,9 @@ class Crocks(GameConfig):
         if the user's health points are zero, the game will end.
 
     """
+    def __init__(self):
+        self.logger = logger
+    
     def run(self):
 
         #   Game Configurations

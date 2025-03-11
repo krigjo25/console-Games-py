@@ -31,7 +31,7 @@ python app.py
 ```
 
 ## Testing Framework / Data Sets
-This project uses the testing framework <strong>pytest</strong>.
+The project uses the testing framework <strong>pytest</strong>.
 
 ```sh
 USEAGE : Type in your terminal pytest <strong>testing/</strong> In order to test the whole dictionary

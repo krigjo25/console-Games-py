@@ -1,8 +1,16 @@
+#   Application's Configuration's file
 #   Importing Responsories
 import sys, math as m, random as r
+from typing import Optional
 
 #   Importing Customized repository
+from lib.config.log_config import ConfigurationWatcher
 from lib.dict.game_over import GameOver
+from lib.utils.tools import ConsoleTools
+
+logger = ConfigurationWatcher()
+logger = logger.FileHandler()
+
 class GameConfig():
 
     """
@@ -20,7 +28,9 @@ class GameConfig():
         self.HP = HP
         self.level = level
         self.score = score
-
+        self.logger = logger
+        self.console = ConsoleTools()
+        
         self.CompareScore = int(round(1.5 * 10 * m.sqrt(self.Level))) if int(round(1.5 * 10 * m.sqrt(self.Level))) > 0 else int(round(1.5 * 10 * m.sqrt(self.Level+1)))
     
     #  Game Properties
@@ -63,12 +73,18 @@ class GameConfig():
             #   The level has to be greater than 1
         '''
 
+        messages = []
+        
+        
         #   Ensure the score is greater than the compare score
         if (self.Score > self.CompareScore):
-            
+
+            #   Append the messages
+            messages.append("[ ! ] Congratulation a new level has been unlocked [ ! ]")
+            messages.append("[ ! ] Health Points increased by 1 ! [ ! ]")
+
             #   Notify the user about the new level
-            print(f"[ ! ] Congratulation a new level has been unlocked [ ! ]")
-            print("[ ! ] Health Points increased by 1 ! [ ! ]")
+            self.console.print(messages)
 
             #   Reset the score
             self.Score = 0
@@ -85,14 +101,19 @@ class GameConfig():
             #   Display the current stats
             self.CurrentStats()
 
+        else:
 
-            return
+            #   Append the message
+            messages.append("[ ! ] Score increased by 1 [ ! ]")
 
-        #   Increase the score
-        self.Score += 1
+            #   Increase the score
+            self.Score += 1
 
-        #   Notify the user about the score
-        print("[ ! ] Score increased by 1 [ ! ]")
+            #   Notify the user about the score
+            self.console.print(messages)
+
+        #   Log the events
+        self.logger.info(f"{self.__class__.__name__}: GameLevel : \t lvl : {self.Level} Current Score: {self.Score } / {self.CompareScore}")
 
     def GenerateIntegers(self, lvl:int):
 
@@ -168,39 +189,56 @@ class GameConfig():
         arg.append(n)
         arg.append(txt)
 
-        #   Returning the values
+        #   Log the events
+        self.logger.info(f"{self.__class__.__name__}: TLPAlgorithm : \t Returned argument : {arg}")
+
         return arg
 
     def IncorrectAnswer(self, e:str):
-        self.HP -= 1
-        self.CurrentStats()
+        
+        """
+            When the user inputs an incorrect answer
 
-        print(f"{e}")
+                #   Decreasing the health points
+                #   Displaying the current Stats
+        """
+        old_hp = self.HP
+        self.HP -= 1
+
+        #   Log the events
+        self.logger.info(f"{self.__class__.__name__}: GameLevel : \t HP : {self.HP} - {old_hp}")
+
+
+        self.console.print(f"{e}")
+
 
     def CurrentStats(self):
         arterise = "*" * 11
 
-        print()
-        print(f"{arterise} Current Stats {arterise}")
-        
-        print(f"HP left\t\t: {self.HP}")
-        print(f"Current Level\t: {self.Level}")
-        print(f"Current level\t: {self.Level}")
-        print(f"Current score\t: {self.Score}")
-        print(f"Compare Score\t: {self.Score}/{self.CompareScore} untill next level")
-        print()
+        stats = [
+            f"{arterise} Current Stats {arterise}",
+            f"HP left\t\t: {self.HP}",
+            f"Current Level\t: {self.Level}",
+            f"Current level\t: {self.Level}",
+            f"Current score\t: {self.Score}",
+            f"Compare Score\t: {self.Score}/{self.CompareScore} untill next level"
+
+        ]
+        self.console.print(stats)
     
-    def QuitGame(self, n:int, answer:str = ""):
+    def QuitGame(self, n:int, answer:Optional[str]):
         """
             #   Quitting the game
         """
         if self.HP == 0:
             self.CurrentStats()
-            return sys.exit(f"{GameOver().roundover(n,answer)}\n")
+
+        self.logger.info(f"{self.__class__.__name__}: QuitGame : \t HP: {self.HP} Current Score: {self.Score } / {self.CompareScore}")
+        return sys.exit(f"{GameOver().roundover(n,answer)}\n")
     
     def CorrectAnswer(self, arg):
         
-        print(f"{arg}")
+        self.console.print(arg)
 
         #   Increasing the score / level
         self.GameLevel()

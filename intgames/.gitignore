@@ -1,1 +1,9 @@
-.venv/
+#   Directories
+__psychache__/
+wordgames/
+testing/
+
+
+#   Files
+.log
+.env
