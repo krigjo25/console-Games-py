@@ -1,6 +1,9 @@
+#   Game Collection
+
 #   Importing Responsories
 import time as t
 
+#   Importing Customized repository
 from lib.config.config import GameConfig
 from lib.debug.logger import GameWatcher
 
