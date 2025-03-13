@@ -17,48 +17,34 @@ class Crocks(GameConfig):
         if the user's health points are zero, the game will end.
 
     """
+
     def __init__(self):
         self.logger = logger
     
     def run(self):
 
-        #   Game Configurations
-
-        #   Initializing the game
         self.HP = 3
         n = [self.generate_integers(self.player_level), self.generate_integers(self.player_level)]
 
         while True:
 
-            #   Prompting the user
+            self.quit_game(n, answer)
+
             answer = str(input(f'Is {n[0][0]} >=< {n[1][0]}? :\t'))
 
             #   Ensure that the user does not input any characters which are not allowed
             try :
-
-                #   Ensure that the user has zero health points left
-                if self.HP == 0: 
-                    self.quit_game(n, answer)
 
                 #   Ensure that the user has inputted the correct answer
                 if answer not in ['>', '<', '=']:
                     raise ValueError('Invalid input')
 
             except (ValueError, TypeError, Exception) as e: 
-                
-                #   Decrease the self.HP by one
-                self.HP -= 1
 
-                #   Notify the user about the incorrect answer
                 self.incorrect_answer(e)
-
-            #   Evaulate the answer and ensure that the user has the correct answer
+                
             if n[0][0] > n[1][0] and answer == '>':
-            
-                #  Increasing the score
-                self.player_score += 1
 
-                #   Notify the user about the correct answer
                 self.correct_answer(f"Correct answer")
 
                 #   Generating new integers
@@ -67,31 +53,17 @@ class Crocks(GameConfig):
             #   Evaulate the answer and ensure that the user has the correct answer
             elif n[0][0] < n[1][0] and answer == '<':
             
-                #  Increasing the score
-                self.player_score += 1
-
-                #   Notify the user about the correct answer
                 self.correct_answer()
-
-                #   Generating new integers
                 n = [self.generate_integers(self.player_level), self.generate_integers(self.player_level)]
 
             #   Evaulate the answer and ensure that the user has the correct answer
             elif n[0][0] == n[1][0] and answer == '=':
-            
-                #  Increasing the score
-                self.player_score += 1
 
-                #   Notify the user about the correct answer
                 self.correct_answer("Correct answer")
-
-                #   Generating new integers
                 n = [self.generate_integers(self.player_level), self.generate_integers(self.player_level)]
 
             #   Otherwise the user has the wrong answer
             else:
-
-                #   Decrease the self.HP by one
                 self.incorrect_answer(f"Incorrect answer :\n")
 
 class GuessTheNumber(GameConfig):
@@ -150,7 +122,6 @@ class GuessTheNumber(GameConfig):
                 
             period = t.perf_counter() - start
             self.logger.info(f"{self.__class__.__name__} Level : {self.level} Score : {self.score} / {self.compare_score}Time : {t.perf_counter() - start} seconds ")
-            
 
 class LittleProfessor(GameConfig):
 
@@ -192,5 +163,4 @@ class LittleProfessor(GameConfig):
 
             #   Breaking out of the loop
             if self.player_level == 10:
-                
                 return print(f"Score : {self.player_score}\nLevels completed : {self.player_level}")
