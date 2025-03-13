@@ -4,12 +4,12 @@ import sys, math as m, random as r
 from typing import Optional
 
 #   Importing Customized repository
-from intgames.lib.debug.logger import ConfigurationWatcher
 from lib.dict.game_over import GameOver
 from lib.utils.tools import ConsoleTools
+from lib.debug.logger import ConfigurationWatcher
 
 logger = ConfigurationWatcher()
-logger = logger.FileHandler()
+logger = logger.file_handler()
 
 class GameConfig():
 
@@ -31,42 +31,42 @@ class GameConfig():
         self.logger = logger
         self.console = ConsoleTools()
         
-        self.CompareScore = int(round(1.5 * 10 * m.sqrt(self.Level))) if int(round(1.5 * 10 * m.sqrt(self.Level))) > 0 else int(round(1.5 * 10 * m.sqrt(self.Level+1)))
+        self.compare_score = int(round(1.5 * 10 * m.sqrt(self.player_level))) if int(round(1.5 * 10 * m.sqrt(self.player_level))) > 0 else int(round(1.5 * 10 * m.sqrt(self.player_level+1)))
     
     #  Game Properties
     @property
-    def Level(self): return self.level
+    def player_level(self): return self.level
     
     @property
-    def Score(self): return self.score
+    def player_score(self): return self.score
     
     @property
-    def HealthPoints(self): return self.HP
+    def player_hp(self): return self.HP
 
     @property
-    def Compare(self): return self.CompareScore
+    def computer_comparison(self): return self.compare_score
     
     
     #   Property setters
-    @Level.setter
-    def Level(self, level):
-        if self.Score >= self.CompareScore:
+    @player_level.setter
+    def player_level(self, level):
+        if self.player_score >= self.compare_score:
 
             self.level = level
     
-    @Score.setter
-    def Score(self, score):
+    @player_score.setter
+    def player_score(self, score):
         self.score = score
     
-    @HealthPoints.setter
-    def HealthPoints(self, HP):
+    @player_hp.setter
+    def player_hp(self, HP):
         self.HP = HP
 
-    @Compare.setter
-    def Compare(self, compare):
-        self.CompareScore = compare
+    @computer_comparison.setter
+    def computer_comparison(self, compare):
+        self.compare_score = compare
 
-    def GameLevel(self):
+    def game_level(self):
 
         '''
             #   Increasing the game level of the game
@@ -77,7 +77,7 @@ class GameConfig():
         
         
         #   Ensure the score is greater than the compare score
-        if (self.Score > self.CompareScore):
+        if (self.player_score > self.compare_score):
 
             #   Append the messages
             messages.append("[ ! ] Congratulation a new level has been unlocked [ ! ]")
@@ -87,19 +87,19 @@ class GameConfig():
             self.console.print(messages)
 
             #   Reset the score
-            self.Score = 0
+            self.player_score = 0
 
             #   Increase the level
-            self.Level += 1
+            self.player_level += 1
 
             #   Increase the Health Points
             self.HP += 1 
 
             #   Increase the compare score
-            self.CompareScore = int(round(1.5 * 10 * m.sqrt(self.Level)))
+            self.compare_score = int(round(1.5 * 10 * m.sqrt(self.player_level)))
 
             #   Display the current stats
-            self.CurrentStats()
+            self.current_stats()
 
         else:
 
@@ -107,15 +107,15 @@ class GameConfig():
             messages.append("[ ! ] Score increased by 1 [ ! ]")
 
             #   Increase the score
-            self.Score += 1
+            self.player_score += 1
 
             #   Notify the user about the score
             self.console.print(messages)
 
         #   Log the events
-        self.logger.info(f"{self.__class__.__name__}: GameLevel : \t lvl : {self.Level} Current Score: {self.Score } / {self.CompareScore}")
+        self.logger.info(f"{self.__class__.__name__}: GameLevel : \t lvl : {self.player_level} Current Score: {self.player_score } / {self.compare_score}")
 
-    def GenerateIntegers(self, lvl:int):
+    def generate_integers(self, lvl:int):
 
         """
             #   Basic algorithm for generating random integers
@@ -160,14 +160,14 @@ class GameConfig():
             case _:
                 return [r.randint(0, 500), 'Guess a number between (1-500) :']
 
-    def TLPAlgorithm(self, lvl:int):
+    def the_little_professor_algorithm(self, lvl:int):
 
         """
             #   Generating the game Algorithm for the game which is level based
         """
         #   Generating integers
-        x = self.GenerateIntegers(lvl)
-        y = self.GenerateIntegers(lvl)
+        x = self.generate_integers(lvl)
+        y = self.generate_integers(lvl)
 
         match lvl:
 
@@ -194,7 +194,7 @@ class GameConfig():
 
         return arg
 
-    def IncorrectAnswer(self, e:str):
+    def incorrect_answer(self, e:str):
         
         """
             When the user inputs an incorrect answer
@@ -212,35 +212,35 @@ class GameConfig():
         self.console.print(f"{e}")
 
 
-    def CurrentStats(self):
+    def current_stats(self):
         arterise = "*" * 11
 
         stats = [
             f"{arterise} Current Stats {arterise}",
             f"HP left\t\t: {self.HP}",
-            f"Current Level\t: {self.Level}",
-            f"Current level\t: {self.Level}",
-            f"Current score\t: {self.Score}",
-            f"Compare Score\t: {self.Score}/{self.CompareScore} untill next level"
+            f"Current Level\t: {self.player_level}",
+            f"Current level\t: {self.player_level}",
+            f"Current score\t: {self.player_score}",
+            f"Compare Score\t: {self.player_score}/{self.compare_score} untill next level"
 
         ]
         self.console.print(stats)
     
-    def QuitGame(self, n:int, answer:Optional[str]):
+    def quit_game(self, n:int, answer:Optional[str]):
         """
             #   Quitting the game
         """
         if self.HP == 0:
-            self.CurrentStats()
+            self.current_stats()
 
-        self.logger.info(f"{self.__class__.__name__}: QuitGame : \t HP: {self.HP} Current Score: {self.Score } / {self.CompareScore}")
+        self.logger.info(f"{self.__class__.__name__}: QuitGame : \t HP: {self.HP} Current Score: {self.player_score } / {self.compare_score}")
         return sys.exit(f"{GameOver().roundover(n,answer)}\n")
     
-    def CorrectAnswer(self, arg):
+    def correct_answer(self, arg):
         
         self.console.print(arg)
 
         #   Increasing the score / level
-        self.GameLevel()
+        self.game_level()
 
         

@@ -1,4 +1,5 @@
 #  Handling the application logging
+#  krigjo25 (c) 2025
 
 #   Importing required dependencies
 import logging as Log
@@ -9,6 +10,7 @@ class Logger(object):
     """
         Logger class to handle application logging
     """
+
     def __init__(self, name:Optional[str] = None):
 
         """
@@ -26,10 +28,10 @@ class Logger(object):
         self.log.setLevel(Log.DEBUG)
         
         #   Initialize the Flags
-        self.file_handler = False
-        self.console_handler = False
+        self.file = False
+        self.console = False
 
-    def SetupHandler(self, handler:Union[Log.FileHandler | Log.StreamHandler]):
+    def setup_handler(self, handler:Union[Log.FileHandler | Log.StreamHandler]):
         
         """
             *   Setup the Log handler
@@ -40,7 +42,7 @@ class Logger(object):
         handler.setFormatter(formatter)
         self.log.addHandler(handler)
     
-    def ConsoleHandler(self):
+    def console_handler(self):
 
 
         """
@@ -48,35 +50,35 @@ class Logger(object):
         """
         
         #   Ensure that the Flag is not set to True
-        if not self.console_handler:
+        if not self.console:
             
             #   Set the flag
-            self.console_handler = True
+            self.console = True
             
             #   Initializing the handler
             handler = Log.StreamHandler()
-            self.SetupHandler(handler)
+            self.setup_handler(handler)
 
             #   Send message to the console
             self.log.info(f"{self.name} has been initialized.")
 
-    def FileHandler(self):
+    def file_handler(self):
 
         """
             *   Add a file handler to the logger
         """
         #   Ensure that the Flag is not set to True
-        if not self.file_handler:
+        if not self.file:
 
             #   Initializing the handler
             handler = Log.FileHandler(f"{self.name}.log")
-            self.SetupHandler(handler)
+            self.setup_handler(handler)
 
             #   Send message to the console
             self.log.info(f"{self.name} has been initialized.")
 
             #   Set the flag
-            self.file_handler = True
+            self.file = True
 
         else:
             self.log.warning(f"{self.name} Console handler already initialized")
@@ -98,7 +100,6 @@ class GameWatcher(Logger):
     def __init__(self):
         super().__init__(name=f"{self.__class__.__name__}")
         
-
 class UtilsWatcher(Logger):
 
     def __init__(self):

@@ -1,9 +1,9 @@
 #   Directories
-__psychache__/
+__pycache__/
 wordgames/
 testing/
 
 
 #   Files
-.log
-.env
+*.log
+*.env
