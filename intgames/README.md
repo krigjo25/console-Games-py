@@ -1,78 +1,31 @@
 # Integer Console games
-Is a collection of simple console-based games written in Python.
-The project is designed to demostrate basic game development.
+This project comprises a collection of simple, console-based games, written in Python.
+The project functions to demostrates and explores fundamental concepts in game development.
+
+Users of this code are reminded to respect, and keep the [Academic Honesty Policy](https://cs50.harvard.edu/x/2023/honesty/) in mind.<br>
+
+A preview of [CS50P's Problem set 4 | Guessing Game](https://cs50.harvard.edu/python/2022/psets/4/game/).<br>
+A preview of [CS50P's Problem set 4 | Little Proffessor](https://cs50.harvard.edu/python/2022/psets/4/professor/).<br>
 
 ## Games included
-1. **The Little Proffessor** 
-- A game where the player gets two ints to calculate and type in the answer.
+1. **Crocks Game** 
+-  TThis number comparion game tasks the player with determining the relationship between a given number and a target number.
+-  The player s challenged to guess whether the given number is greater than, equal to or less than the target number.
 
 2. **Guess The Number** 
-- A game where the player tries to guess a randomly generated number within a specified range.
+- This number-guessing game challenges, the player to guess a randomly generated number within a predefined range.
+- The game provides feedback to assist the player and increases in difficulty after each correct guess
 
-3. **Crocks Game** 
--  Gussing game Where the player guess if n is A Greater than, equal to or less than n.
-
-## Features
-* Multiple games in one project
-* Dynamically difficulty adjustment based on player performance.
-* Simple and intuitive conse-based user interface.
-* Possibility to extend with new games.
-
-
-## Guess the number
-The application was implemented as a CS50P assignment.<br>
-Also C# versions was implemented as an assignment at GetAcademy [C# version](https://github.com/krigjo25/console-games-cs/blob/master/lib/GuessTheNumber.cs)
-Please respect, and keep the [Academic Honesty Policy](https://cs50.harvard.edu/x/2023/honesty/) in mind.
-
-A demo can be watched at [CS50P's Problem set 4 | Guessing Game](https://cs50.harvard.edu/python/2022/psets/4/game/).
-
-### Game rules
-* The computer generates a random number within a specified range.
-* You will have to guess the number.
-* If you guess correctly, You'll gain a point after few points the level, health points and difficulty will increase.
-* If you guess incorrectly, You'll loose a Health Point.
-
-Based on level the difficulty may vary, but the user gets a hint if the user types in a less or greater than answer.
-
-###  Usage
-```sh
-USAGE : In your terminal, type app.py -h to view the commands available for the game
-```
-
-## The Little proffesor
-The application was implemented as a CS50P assignment.<br>
-Please respect, and keep the [Academic Honesty Policy](https://cs50.harvard.edu/x/2023/honesty/) in mind.
-
-A demo can be watched at [CS50P's Problem set 4 | Little Proffessor](https://cs50.harvard.edu/python/2022/psets/4/professor/)
-
- Mathimatical operators used in the program 
-
--   Additions, 
--   Substractions,
--   Multiply
-- ~~`dividision` (floor, reminder), ~~
-- ~~`power of` ~~
-- and ~~`binary numbers`~
-### Game rules
-- The game generates two random integers within a specified range.
--   If the equation is correct the computer will generate an answer. There will be an increament of a socre by 1. 
--   When the user has x score the computer will increase health, level & Difficulty based on its algorithm.
-- If you guess incorrectly, You'll loose a Health Point.
-
-### Game Goal
-- Your objective is to calculate the equation, and send the answer as an input to the question
-
-###  Usage
-```sh
-USAGE : In your terminal, type app.py -h to view the commands available for the game
-```
+3. **The Little Proffessor** 
+- This game presents the player with simple arithmetic challenges, involving two integer operands.
+- The player must calculate the correct result and input the answer
+- Designed to reinforce basic arithmetic skills, the game increases in difficulty after each correct answer
 
 ## Crocks Game
-The application was implemented as an assignment at GetAcademy and translated into Python [JavaScript Version]() [C# Version](https://github.com/krigjo25/console-games-cs/blob/master/lib/Crocks.cs)<br>
+Originally implemented as an assignment at Get Academy using [JavaScript](), later translated into [C# Version](https://github.com/krigjo25/console-games-cs/blob/master/lib/Crocks.cs) and Python
 
-Please respect, and keep the [Academic Honesty Policy](https://cs50.harvard.edu/x/2023/honesty/) in mind.
+Users of this code are reminded to respect, and keep the [Academic Honesty Policy](https://cs50.harvard.edu/x/2023/honesty/) in mind.<br>
 
-~~A demo can be watched at [Youtube : Crocks Game]()~~
 
 ### Game rules
 - For every round the game will generate two random numbers.
@@ -88,8 +41,32 @@ Please respect, and keep the [Academic Honesty Policy](https://cs50.harvard.edu/
 USAGE : In your terminal, type app.py -h to view the commands available for the game
 ```
 
-## Notes from the developer
-Created with love, for python programming,
 
-Thanks for reading, and have a blessed day,
+## Guess the number
+The initial implementation of this application was developed for a CS50P assignment.
+Subsequently a C# version was also implemented as an assignment at Get Academy [C# version](https://github.com/krigjo25/console-games-cs/blob/master/lib/GuessTheNumber.cs).
+
+### Game rules
+- The game begins with the comupter generating a random number within a defined range.
+- Player's objective is to guess the generated number.
+- A correct guess earns the player a point. The difficulty, the player's level, and health points increases after a specific number of points are earned.
+- An incorrect guess leads to the player losing a health point.
+
+
+## The Little proffesor
+The initial implementation of this application was developed for a CS50P assignment.<br>
+Users of this code are reminded to respect, and keep the [Academic Honesty Policy](https://cs50.harvard.edu/x/2023/honesty/) in mind.
+
+The program utilizes the following mathematical operators
+-   Addition, 
+-   Substraction,
+-   Multiplication
+
+### Game rules
+- The game begins with the comupter generating a random number within a defined range. The game generates two random integers within a specified range.
+- A correct equation earns the player a point. The difficulty, the player's level, and health points increases after a specific number of points are earned.
+- An incorrect equation leads to the player losing a health point.
+
+
+Thanks for reading, and have a glorious day,
 @krigjo25
