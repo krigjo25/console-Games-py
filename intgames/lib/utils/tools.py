@@ -1,17 +1,17 @@
 import time as t
-class ConsoleTools(object):
+from typing import Optional
 
-    def print(arg: list, ms:float):
+class ConsoleUtils():
+
+    def type_effect(arg:list, ms:Optional[float] = 700):
         """
         Prints the arguments in the list with a delay of ms
 
         #   The function takes in two parameters
-        #   :arg: list
-        #   :ms: float
-        
-        """
+        #   :arg: string is a required parameter
+        #   :ms: float is an optional parameter"""
+        for i in range(len(arg)):
 
-        for i in arg:
-
-            print(i)
+            print(arg[i], end="")
             t.sleep(ms)
+        

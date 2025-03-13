@@ -6,7 +6,7 @@ from lib.debug.logger import GameWatcher
 
 #   Initializing the Logger
 logger = GameWatcher()
-logger = logger.file_handler()
+logger.file_handler()
 
 # Refactoring the code
 class Crocks(GameConfig):
@@ -103,62 +103,54 @@ class GuessTheNumber(GameConfig):
         if the user's health points are zero, the game will end.
 
     """
-    def __init__(self, level:int = 1, score:int = 0, HP:int = 0, compare:int = 0):
-        super().__init__(level, score, HP, compare)
+    def __init__(self):
+        super().__init__()
+        self.logger = logger
+        self.logger.warn(f"{self.__class__.__name__} has been initialized")
 
     def run(self):
-        self.logger.info(f"{self.__class__.__name__}: GameLevel : \t lvl : {self.level} Current Score: {self.score } / {self.compare_score}")
 
-        #   Game Configurations
         self.HP = 9
-        
-        n = self.generate_integers(self.level)
-
-        self.logger.info(f"{self.__class__.__name__}: The game has started !")
-
-        #   Start the timer
         start = t.perf_counter()
+        n = self.generate_integers(self.level)
 
         while True:
 
-            #   Ensure that the user has zero health points left
             self.quit_game(self.HP)
-
-            #   Prompting the user
+            self.logger.info(f"{self.__class__.__name__} Generated number : {n[0]} Text : {n[1]}")
             answer = input(f'{n[1]}')
 
             try :
 
                 #   Ensure that the user has inputted a number
                 if not answer.isnumeric(): 
-                    raise ValueError("The input is not a number")
+                    raise ValueError("Input is not a number")
+
+                answer = int(answer)
 
             except (ValueError, TypeError, Exception) as e: 
                 
                 #   Decrease the self.HP by one and notify the user about the incorrect answer
                 self.incorrect_answer(e)
 
-                self.logger.warn(f"{self.__class__.__name__}: {e}")
-                
-
-            if int(answer) == n[0]: 
-                    
-                    #   Notify the user about the correct answer
-                    self.correct_answer(f"Correct answer")
-
-                    #   Generating new integers
-                    n = self.generate_integers(self.level)
-    
             else:
+                if answer == n[0]: 
+                        
+                        #   Notify the user about the correct answer
+                        arg = ["Correct answer"]
+                        self.correct_answer(arg)
 
-                #   Notify the user about the incorrect answer and decrease the self.HP by one
-                self.incorrect_answer('Too low, guess higher') if n[0] > int(answer) else self.incorrect_answer('Too high, guess lower')
+                        #   Generating new integers
+                        n = self.generate_integers(self.level)
+        
+                else:
 
-                self.logger.warn(f"{self.__class__.__name__}: Incorrect answer")
-
+                    #   Notify the user about the incorrect answer and decrease the self.HP by one
+                    self.incorrect_answer('Too low, guess higher') if n[0] > int(answer) else self.incorrect_answer('Too high, guess lower')
+                
             period = t.perf_counter() - start
-
-            self.logger.info(f"{self.__class__.__name__}: GameLevel : \t lvl : {self.level} Current Score: {self.score } / {self.compare_score},  {period}")
+            self.logger.info(f"{self.__class__.__name__} Level : {self.level} Score : {self.score} / {self.compare_score}Time : {t.perf_counter() - start} seconds ")
+            
 
 class LittleProfessor(GameConfig):
 
