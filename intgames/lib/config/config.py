@@ -4,7 +4,7 @@ import sys, math as m, random as r
 from typing import Optional
 
 #   Importing Customized repository
-from lib.dict.game_over import GameOver
+from intgames.lib.dict.game_dictionaries import GameOver
 from lib.utils.tools import ConsoleUtils
 from lib.debug.logger import ConfigurationWatcher
 
