@@ -1,10 +1,12 @@
 #   Application's Configuration's file
+
 #   Importing Responsories
-import sys, math as m, random as r
+import sys, math as m, random as r, regex as re
+
 from typing import Optional
 
 #   Importing Customized repository
-from intgames.lib.dict.game_dictionaries import GameOver
+from lib.dict.game_dictionaries import GameOver
 from lib.utils.tools import ConsoleUtils
 from lib.debug.logger import ConfigurationWatcher
 
@@ -56,8 +58,14 @@ class GameConfig():
     
     @player_score.setter
     def player_score(self, score):
+        try:
+            if not str(score).isalnum():
+                raise Exception("Score can not be a string")
+        except Exception as e:
+            sys.exit(e)
+        
         self.score = score
-    
+        
     @player_hp.setter
     def player_hp(self, HP):
         self.HP = HP
@@ -76,7 +84,7 @@ class GameConfig():
         messages = []
         
         #   Ensure the score is greater than the compare score
-        if (self.player_score >= self.compare_score):
+        if (self.score >= self.compare_score):
 
             #   Append the messages
             messages.append("[ ! ] Congratulation a new level has been unlocked [ ! ]")
@@ -106,7 +114,6 @@ class GameConfig():
 
             #   Increase the score
             self.player_score += 1
-
 
     def generate_integers(self, lvl:int):
 
@@ -217,7 +224,7 @@ class GameConfig():
             self.current_stats()
             return sys.exit(f"{GameOver().roundover()}\n")
 
-    def incorrect_answer(self):
+    def incorrect_answer(self, arg:Optional[str]):
         
         """
             When the user inputs an incorrect answer
@@ -231,7 +238,10 @@ class GameConfig():
         #   Log the events
         self.logger.info(f"{self.__class__.__name__}: GameLevel : \t HP : {self.HP} - {old_hp}")
 
-        print(GameOver().roundover())
+        if not arg:
+            arg = GameOver().roundover()
+
+        print(arg)
 
     def correct_answer(self, arg):
         

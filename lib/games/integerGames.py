@@ -4,11 +4,8 @@
 import time as t, sys, numpy as np, random as r
 
 #   Importing Customized repository
-from lib.utils.db import SQLite as SQL
 from lib.config.config import GameConfig
 from lib.debug.logger import GameWatcher
-from lib.endpoints.apis import NinjaAPI, GenerateNames
-from lib.dict.game_dictionaries import GameOver, ScrabbleGame
 
 
 #   Initializing the Logger
@@ -89,7 +86,7 @@ class GuessTheNumber(GameConfig):
 
     def run(self):
 
-        self.HP = 9
+        self.player_hp = 9
         start = t.perf_counter()
         n = self.generate_integers(self.level)
 

@@ -1,11 +1,10 @@
 #   Directories
 __pycache__/
 wordgames/
-tests/
 
 
 #   Files
 *.log
 *.env
 wordGames.py
-test_word_games
+test_wordgame.py
