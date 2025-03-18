@@ -1,7 +1,7 @@
 #   Importing responsories
 import sys
 from lib.command_line_tool import CommandlineInterface
-from lib.gamecollection import LittleProfessor, GuessTheNumber, Crocks
+from lib.games.integerGames import LittleProfessor, GuessTheNumber, Crocks
 
 def main():
 

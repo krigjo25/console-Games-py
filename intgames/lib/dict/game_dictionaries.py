@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 #   Custom libraries
-from lib.utils.db import MariaDB
+from lib.utils.db import SQLite
 from lib.endpoints.apis import GenerateNames, NinjaAPI
 
 

@@ -2,7 +2,7 @@
 import pytest
 
 #   Importing local libraries
-from intgames.lib.gamecollection import IntegerGames as ig
+from intgames.lib.games.integerGames import IntegerGames as ig
 
 # Configure the testing cases
 class TestConfigurations():

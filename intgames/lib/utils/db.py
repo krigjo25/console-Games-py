@@ -1,5 +1,5 @@
 #   Python responsories
-import os, sys, mariadb, sqlite3, uu, pandas as pd
+import os, mariadb, sqlite3, pandas as pd
 
 from dotenv import load_dotenv
 
