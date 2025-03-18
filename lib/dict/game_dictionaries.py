@@ -210,6 +210,20 @@ class ScrabbleGame():
 
         return result
 
+class TheLittleProffessor():
+
+    def mathOperation(self):
+        
+        dictionary = {
+            0:'+',
+            1:'-',
+            2:'/',
+            3:'*',}
+        
+        r.shuffle(dictionary)
+
+        return r.randint(0, len(dictionary)-1)
+
 class FrequentlyAskedQuestion():
 
         def WordGames(self, arg):

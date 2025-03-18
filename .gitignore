@@ -1,7 +1,7 @@
 #   Directories
 __pycache__/
 wordgames/
-
+.pystest_cache/
 
 #   Files
 *.log

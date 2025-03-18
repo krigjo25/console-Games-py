@@ -93,10 +93,10 @@ class GameConfig():
 
 
             #   Reset the score
-            self.player_score = 0
+            self.score = 0
 
             #   Increase the level
-            self.player_level += 1
+            self.level += 1
 
             #   Increase the Health Points
             self.HP += 1 
@@ -113,7 +113,7 @@ class GameConfig():
             messages.append("[ ! ] Score increased by 1 [ ! ]")
 
             #   Increase the score
-            self.player_score += 1
+            self.score += 1
 
     def generate_integers(self, lvl:int):
 
@@ -125,40 +125,8 @@ class GameConfig():
             param: lvl : int : The level of the game
             return: list : The list contains the generated integer and a string
         """
-        match lvl:
-
-            case 1: 
-                return [r.randint(0, 10), 'Guess a number between (1-10) :']
-
-            case 2: 
-                return [r.randint(0, 20), 'Guess a number between (1-20) :']
-
-            case 3: 
-                return [r.randint(0, 30), 'Guess a number between (1-30) :']
-
-            case 4: 
-                return [r.randint(0, 40), 'Guess a number between (1-40) :']
-
-            case 5: 
-                return [r.randint(0, 50), 'Guess a number between (1-50) :']
-
-            case 6: 
-                return [r.randint(0, 60), 'Guess a number between (1-60) :']
-            
-            case 7: 
-                return [r.randint(0, 70), 'Guess a number between (1-70) :']
-            
-            case 8: 
-                return [r.randint(0, 80), 'Guess a number between (1-80) :']
-            
-            case 9: 
-                return [r.randint(0, 90), 'Guess a number between (1-90) :']
-            
-            case 10: 
-                return [r.randint(0, 100), 'Guess a number between (1-100) :']
-            
-            case _:
-                return [r.randint(0, 500), 'Guess a number between (1-500) :']
+        n = r.randint(0, int(round(1.5 * 10 * m.sqrt(self.player_level))))
+        return [n, f'Guess a number between (1-{r.randint(n+1, n + 10 )}) :']
 
     def the_little_professor_algorithm(self, lvl:int):
 
@@ -169,9 +137,11 @@ class GameConfig():
         x = self.generate_integers(lvl)
         y = self.generate_integers(lvl)
 
+        #   For every level increment increase the chance by 1% to get a harder operator
         match lvl:
 
             case 5:
+                
                 n = abs(x[0] - y[0])
                 txt = f"{x[0]} - {y[0]}="
             
@@ -184,6 +154,7 @@ class GameConfig():
                 txt = f"{x[0]} + {y[0]}="
 
         #   Initializing a list
+
         arg = []
 
         arg.append(n)
