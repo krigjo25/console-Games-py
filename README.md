@@ -120,7 +120,7 @@ See the [LICENSE](./LICENSE) file for details.
 ### Contact
 For any questions or suggestions, please open an issue or contact the me at [e-mail](mailto:krigjo25@outlook.com).
 
-### Responsories
+#### Responsories
 
 -   [pytest - by pytest team](https://github.com/pytest-dev/pytest)
 -   [random - by Python developer team]()
@@ -130,5 +130,5 @@ For any questions or suggestions, please open an issue or contact the me at [e-m
 ## Notes from the developer
 Created with love, for python programming,
 
-Thanks for reading, and have a blessed day,
+Thanks for reading, and have a glorious rest of the day,
 @krigjo25
