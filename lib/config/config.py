@@ -6,7 +6,7 @@ import sys, math as m, random as r, regex as re
 from typing import Optional
 
 #   Importing Customized repository
-from lib.dict.game_dictionaries import GameOver
+from lib.dictionaries.game_dictionaries import GameOver
 from lib.debug.logger import ConfigurationWatcher
 from lib.utils.game_utils import TheLittleProffessorUtils, ConsoleUtils
 

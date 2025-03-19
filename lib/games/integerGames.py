@@ -71,7 +71,7 @@ class Crocks(GameConfig):
 
 class GuessTheNumber(GameConfig):
     """
-        Classic Guess the number game
+        Guess The Number Game
 
         The user has to guess the number that the computer has generated.
         The user has to guess the number within the range of 1- x.
