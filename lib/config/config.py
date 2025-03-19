@@ -7,9 +7,8 @@ from typing import Optional
 
 #   Importing Customized repository
 from lib.dict.game_dictionaries import GameOver
-from lib.utils.tools import ConsoleUtils
 from lib.debug.logger import ConfigurationWatcher
-from lib.dict.game_dictionaries import TheLittleProffessor
+from lib.utils.game_utils import TheLittleProffessorUtils, ConsoleUtils
 
 logger = ConfigurationWatcher()
 logger.file_handler()
@@ -134,42 +133,39 @@ class GameConfig():
         """
             #   Generating the game Algorithm for the game which is level based
         """
-        instance = TheLittleProffessor()
+        
+        #   Initialize an instance
+        instance = TheLittleProffessorUtils()
+
         #   Generating integers
         x = self.generate_integers(lvl)
         y = self.generate_integers(lvl)
 
-        #   For every level increment increase the chance by 1% to get a harder operator
-        
-        match instance.mathOperation:
-
-            case '-':
-                
-                n = abs(x[0] - y[0])
-                txt = f"{x[0]} - {y[0]}="
-            
-            case '*':
-                n = abs(x[0] * y[0])
-                txt = f"{x[0]} * {y[0]}="
-            
-            case '/':
-                n = abs(x[0] / y[0])
-                txt = f"{x[0]} / {y[0]}="
-            
-            case '//':
-                n = abs(x[0] // y[0])
-                txt = f"{x[0]} // {y[0]}="
-
-            case _:
-                n = abs(x[0] + y[0])
-                txt = f"{x[0]} + {y[0]}="
-
         #   Initializing a list
-
         arg = []
 
-        arg.append(n)
-        arg.append(txt)
+        #   Matching Mathematic operator
+        match instance.mathOperation():
+
+            case '-':
+                arg.append(abs(x[0] - y[0]))
+                arg.append(f"{x[0]} - {y[0]}=")
+
+            case '*':
+                arg.append(abs(x[0] * y[0]))
+                arg.append(f"{x[0]} * {y[0]}=")
+
+            case '/':
+                arg.append(abs(x[0] / y[0]))
+                arg.append(f"{x[0]} / {y[0]}=")
+            
+            case '//':
+                arg.append(abs(x[0] // y[0]))
+                arg.append(f"{x[0]} // {y[0]}=")
+
+            case _:
+                arg.append(abs(x[0] + y[0]))
+                arg.append(f"{x[0]} + {y[0]}=")
 
         #   Log the events
         self.logger.info(f"{self.__class__.__name__}: TLPAlgorithm : \t Returned argument : {arg}")
@@ -189,8 +185,7 @@ class GameConfig():
         ]
         
         if arg:
-            for i in arg:
-                stats.append(i)
+            stats.append(i for i in arg)
         
         stats = tuple(stats)
 

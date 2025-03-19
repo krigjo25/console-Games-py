@@ -1,12 +1,11 @@
 #   Game Collection
 
 #   Importing Responsories
-import time as t, sys, numpy as np, random as r
+import time as t, random as r
 
 #   Importing Customized repository
 from lib.config.config import GameConfig
 from lib.debug.logger import GameWatcher
-
 
 #   Initializing the Logger
 logger = GameWatcher()
@@ -102,14 +101,16 @@ class GuessTheNumber(GameConfig):
                 if not answer.isnumeric(): 
                     raise ValueError("Input is not a number")
 
-                answer = int(answer)
-
             except (ValueError, TypeError, Exception) as e: 
                 
                 #   Decrease the self.HP by one and notify the user about the incorrect answer
                 self.incorrect_answer(e)
 
             else:
+
+                #   Assign an integer
+                answer = int(answer)
+
                 if answer == n[0]: 
                         
                         #   Notify the user about the correct answer
@@ -123,8 +124,7 @@ class GuessTheNumber(GameConfig):
 
                     #   Notify the user about the incorrect answer and decrease the self.HP by one
                     self.incorrect_answer('Too low, guess higher') if n[0] > int(answer) else self.incorrect_answer('Too high, guess lower')
-                
-            period = t.perf_counter() - start
+
             self.logger.info(f"{self.__class__.__name__} Level : {self.level} Score : {self.score} / {self.compare_score}Time : {t.perf_counter() - start} seconds ")
 
 class LittleProfessor(GameConfig):
