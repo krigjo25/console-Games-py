@@ -10,5 +10,3 @@ __pycache__/
 *.log
 *.env
 wordGames.py
-
-test_game.py
