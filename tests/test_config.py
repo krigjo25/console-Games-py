@@ -1,13 +1,13 @@
 #   Importing Responsories
-import pytest
+import pytest, math as m
 
 
 #   Testing the game configuration
 class TestIGameConfig():
   
-    def check_instance(self, result):
+    def check_instance(self):
         pass
-    
+
     def test_generate_integers(self):
         pass
   
