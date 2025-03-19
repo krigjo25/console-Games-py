@@ -9,6 +9,7 @@ from typing import Optional
 from lib.dict.game_dictionaries import GameOver
 from lib.utils.tools import ConsoleUtils
 from lib.debug.logger import ConfigurationWatcher
+from lib.dict.game_dictionaries import TheLittleProffessor
 
 logger = ConfigurationWatcher()
 logger.file_handler()
@@ -133,21 +134,31 @@ class GameConfig():
         """
             #   Generating the game Algorithm for the game which is level based
         """
+        instance = TheLittleProffessor()
         #   Generating integers
         x = self.generate_integers(lvl)
         y = self.generate_integers(lvl)
 
         #   For every level increment increase the chance by 1% to get a harder operator
-        match lvl:
+        
+        match instance.mathOperation:
 
-            case 5:
+            case '-':
                 
                 n = abs(x[0] - y[0])
                 txt = f"{x[0]} - {y[0]}="
             
-            case 6:
+            case '*':
                 n = abs(x[0] * y[0])
                 txt = f"{x[0]} * {y[0]}="
+            
+            case '/':
+                n = abs(x[0] / y[0])
+                txt = f"{x[0]} / {y[0]}="
+            
+            case '//':
+                n = abs(x[0] // y[0])
+                txt = f"{x[0]} // {y[0]}="
 
             case _:
                 n = abs(x[0] + y[0])
