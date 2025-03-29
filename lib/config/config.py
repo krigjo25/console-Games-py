@@ -10,6 +10,7 @@ from lib.dictionaries.game_dictionaries import GameOver
 from lib.debug.logger import ConfigurationWatcher
 from lib.utils.game_utils import TheLittleProffessorUtils, ConsoleUtils
 
+#   Initializing the logger
 logger = ConfigurationWatcher()
 logger.file_handler()
 
@@ -25,7 +26,7 @@ class GameConfig():
 
     """
     
-    def __init__(self, score:int  = 0, HP:int = 3, level:Optional[int] = 1):
+    def __init__(self, score:Optional[int]  = 0, HP:Optional[int] = 3, level:Optional[int] = 1):
 
         self.HP = HP
         self.level = level
@@ -179,9 +180,8 @@ class GameConfig():
             f"{arterise} Current Stats {arterise}",
             f"HP left\t\t: {self.HP}",
             f"Current Level\t: {self.player_level}",
-            f"Current level\t: {self.player_level}",
-            f"Current score\t: {self.player_score}",
-            f"Compare Score\t: {self.player_score}/{self.compare_score} untill next level"
+            f"Current Score\t: {self.player_score}",
+            f"Next level\t: {self.compare_score - self.player_score} points until next level"
         ]
         
         if arg:
@@ -192,7 +192,7 @@ class GameConfig():
         #   Notify the user about the stats and given arg
         for i in range(len(stats)):
             print(stats[i])
-    
+
     def quit_game(self, n:int):
         """
             #   Quitting the game
