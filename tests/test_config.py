@@ -54,9 +54,6 @@ class TestIGameConfig():
             instance = MockGameLogic(HP = 0)
 
             assert instance.quit_game(instance.HP)
-        
-    def test_game_instance(self):
-        pass
 
     def test_stats(self, capsys):
 
@@ -86,4 +83,7 @@ class TestIGameConfig():
         pass
 
     def test_correct_answer(self):
+        pass
+
+    def test_game_level(self):
         pass
