@@ -6,7 +6,7 @@ import pytest, math as m, test_setup, random as r
 test_setup.pytest_environment()
 
 from lib.config. config import GameConfig
-
+from lib.dictionaries.game_dictionaries import GameOver, FrequentlyAskedQuestion
 #   Configure the testing cases
 class MockGameLogic(GameConfig):
     def __init__(self, score = 0, HP = 3, level = 1):
@@ -79,11 +79,58 @@ class TestIGameConfig():
         #   The test
         assert captured.out == "".join(expected_output)
 
-    def test_incorrect_answer(self):
-        pass
+    def test_incorrect_answer(self, capsys):
+        
+        #   Initializing an instance
+        instance = MockGameLogic()
+        instance.incorrect_answer()
+
+        #   n characters
+        n = 57
+        
+        #   Capture the print functionallity
+        captured = capsys.readouterr()
+
+        #   Ensures the length is less than n
+        assert len(captured.out) <= n
+
+        #   Ensures the length is greater or equal to 16
+        assert len(captured.out) >= 16
+
+        #   Ensures that the string is a string
+        assert isinstance(captured.out, str)
 
     def test_correct_answer(self):
+        
+        #   Initializing an instance
+        instance = MockGameLogic()
+
         pass
 
     def test_game_level(self):
+
+        #   Initializing an instance
+        instance = MockGameLogic()
+        player_score = instance.player_score
+
+        #   Testing the printed message
+
+        #   Testing the player_score
+        assert player_score < instance.player_score
+
+        #   Fetch the player score
+        player_score = instance.compare_score
+        
+        #   Initialize a new instance
+        instance = MockGameLogic(score = player_score)
+        
+        #   Fetch the player level
+        player_level = instance.player_level
+
+        #   Increase the score
+        instance.game_level()
+
+        #   Ensure the increment of the score.
+        assert instance.player_level > player_level
+
         pass

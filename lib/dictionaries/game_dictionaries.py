@@ -2,16 +2,10 @@
 
 #   Importing Responsories
 import random as r, sys
-from os import getenv
-from dotenv import load_dotenv
-
-#   Loading Environment Variables
-load_dotenv()
 
 #   Custom libraries
 from lib.utils.db import SQLite
 from lib.endpoints.apis import APIService
-
 
 class GameOver():
 
@@ -26,17 +20,16 @@ class GameOver():
     def roundover(self):
 
         dictionary = {
-                        1:f'What a humble answer !', 
-                        2:f'How is 10 + 10 equal to 11 + 11?\nBecause it\'s twenty too',
-                        3:f'*What does 1 plus 1 equal? a Dinner for 2',
-                        4:f'Incorrect answer',}
+                        1:f"What a humble answer !", 
+                        2:f"How is 10 + 10 equal to 11 + 11?\nBecause it's twenty too",
+                        3:f"*What does 1 plus 1 equal? a Dinner for 2",
+                        4:f"Incorrect answer",}
 
         #   Randomize the dictionary
-        x = r.randrange(1,len(dictionary))
+        x = r.randrange(1,len(dictionary) + 1)
 
-        string = dictionary.get(x)
 
-        return string
+        return dictionary.get(x)
     
     def Computer(self, arg):
 

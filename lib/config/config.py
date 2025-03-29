@@ -69,7 +69,8 @@ class GameConfig():
         
     @player_hp.setter
     def player_hp(self, HP):
-        self.HP = HP
+        if HP > 0:
+            self.HP = HP
 
     @computer_comparison.setter
     def computer_comparison(self, compare):
@@ -115,6 +116,9 @@ class GameConfig():
 
             #   Increase the score
             self.score += 1
+        
+        for i in range(messages):
+            print(i)
 
     def generate_integers(self, lvl:int):
 
@@ -173,7 +177,7 @@ class GameConfig():
 
         return arg
 
-    def current_stats(self, arg:tuple = None):
+    def current_stats(self, arg:Optional[tuple] = None):
         arterise = "*" * 11
 
         stats = [
@@ -201,7 +205,7 @@ class GameConfig():
             self.current_stats()
             return sys.exit(f"{GameOver().roundover()}\n")
 
-    def incorrect_answer(self, arg:Optional[str]):
+    def incorrect_answer(self, arg:Optional[str] = None):
         
         """
             When the user inputs an incorrect answer
