@@ -1,8 +1,11 @@
-#   Importing Responsories
-import pytest, math as m
+#   Configuration tests
 
-#   Importing local libraries
-from lib.config.config import GameConfig
+#   Importing Responsories
+import pytest, math as m, test_setup, random as r
+
+test_setup.pytest_environment()
+
+from lib.config. config import GameConfig
 
 #   Configure the testing cases
 class MockGameLogic(GameConfig):
@@ -45,13 +48,40 @@ class TestIGameConfig():
         pass
 
     def test_quit_game(self):
-        pass
-  
+        #   Initialize instance
+        with pytest.raises(SystemExit):
+
+            instance = MockGameLogic(HP = 0)
+
+            assert instance.quit_game(instance.HP)
+        
     def test_game_instance(self):
         pass
 
-    def test_stats(self):
-        pass
+    def test_stats(self, capsys):
+
+        #   Randomizing player stats
+        player_HP = r.randint(1, 10)
+        player_level = r.randint(0, 10)
+        player_score = r.randint(0, 10)
+        
+        #   Initializing instance
+        instance = MockGameLogic(level = player_level, HP=player_HP, score=player_score)
+        instance.current_stats()
+        
+        #   Capture print function
+        captured = capsys.readouterr()
+        
+        expected_output = [
+            f"*********** Current Stats ***********\n",
+            f"HP left\t\t: {instance.HP}\n",
+            f"Current Level\t: {instance.player_level}\n",
+            f"Current Score\t: {instance.player_score}\n",
+            f"Next level\t: {instance.compare_score - instance.player_score} points until next level\n"]
+       
+        #   The test
+        assert captured.out == "".join(expected_output)
+
     def test_incorrect_answer(self):
         pass
 
