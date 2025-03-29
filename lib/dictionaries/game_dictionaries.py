@@ -10,7 +10,7 @@ load_dotenv()
 
 #   Custom libraries
 from lib.utils.db import SQLite
-from lib.endpoints.apis import GenerateNames, APIService
+from lib.endpoints.apis import APIService
 
 
 class GameOver():
