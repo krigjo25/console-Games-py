@@ -226,8 +226,10 @@ class GameConfig():
 
     def correct_answer(self, arg):
         
-        for i in range(len(arg)):
-            print(arg[i])
+        if not arg:
+            arg = GameOver().roundover_victorious()
+
+        print(arg)
 
         #   Increasing the score / level
         self.game_level()

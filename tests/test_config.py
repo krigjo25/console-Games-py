@@ -118,9 +118,6 @@ class TestIGameConfig():
         #   Ensures that the health point has decresed
         assert instance.HP < player_health
 
-    def test_correct_answer(self):
-        pass
-
     def test_game_level(self, capsys):
 
         #   Initializing an instance
