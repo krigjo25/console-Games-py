@@ -88,12 +88,6 @@ class GameConfig():
         #   Ensure the score is greater than the compare score
         if (self.score >= self.compare_score):
 
-            #   Append the messages
-            messages.append("[ ! ] Congratulation a new level has been unlocked [ ! ]")
-            messages.append("[ ! ] Health Points increased by 1 ! [ ! ]")
-
-
-
             #   Reset the score
             self.score = 0
 
@@ -107,18 +101,18 @@ class GameConfig():
             self.compare_score = int(round(1.5 * 10 * m.sqrt(self.player_level)))
 
             #   Display the current stats
-            self.current_stats()
+            self.current_stats(arg = "[ ⬆️ ] Congratulation a new level has been unlocked [ ⬆️ ]")
 
         else:
 
             #   Append the message
-            messages.append("[ ! ] Score increased by 1 [ ! ]")
+            messages.append("[ ⭐ ] Score increased by 1 [ ⭐ ]")
 
             #   Increase the score
             self.score += 1
         
-        for i in range(messages):
-            print(i)
+        for i in range(len(messages)):
+            print(messages[i])
 
     def generate_integers(self, lvl:int):
 
@@ -179,17 +173,23 @@ class GameConfig():
 
     def current_stats(self, arg:Optional[tuple] = None):
         arterise = "*" * 11
+        if not arg:
 
-        stats = [
-            f"{arterise} Current Stats {arterise}",
-            f"HP left\t\t: {self.HP}",
-            f"Current Level\t: {self.player_level}",
-            f"Current Score\t: {self.player_score}",
-            f"Next level\t: {self.compare_score - self.player_score} points until next level"
-        ]
-        
-        if arg:
-            stats.append(i for i in arg)
+            stats = [
+                f"{arterise} Current Stats {arterise}",
+                f"HP\t\t: {self.HP} [ 💝 ]",
+                f"Level\t: {self.player_level} [ 🏅 ]",
+                f"Score\t: {self.player_score} [ ⭐ ]",
+                f"{self.compare_score - self.player_score} points to next level [ 🎯 ]"
+            ]
+        else:
+            stats = [
+                f"{arg}",
+                f"HP\t\t: {self.HP} [ 💝 ]",
+                f"Level\t: {self.player_level} [ 🏅 ]",
+                f"Score\t: {self.player_score} [ ⭐ ]",
+                f"{self.compare_score - self.player_score} points to next level [ 🎯 ]"
+            ]
         
         stats = tuple(stats)
 
@@ -203,7 +203,7 @@ class GameConfig():
         """
         if self.HP == 0:
             self.current_stats()
-            return sys.exit(f"{GameOver().roundover()}\n")
+            return sys.exit(f"{GameOver().game_over}\n")
 
     def incorrect_answer(self, arg:Optional[str] = None):
         
@@ -220,7 +220,7 @@ class GameConfig():
         self.logger.info(f"{self.__class__.__name__}: GameLevel : \t HP : {self.HP} - {old_hp}")
 
         if not arg:
-            arg = GameOver().roundover()
+            arg = GameOver().roundover_incorrect()
 
         print(arg)
 

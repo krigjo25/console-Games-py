@@ -17,12 +17,27 @@ class GameOver():
     '''
     #   arg Game Dictionaries
 
-    def roundover(self):
+    def roundover_incorrect(self):
 
         dictionary = {
-                        1:f"What a humble answer !", 
-                        2:f"How is 10 + 10 equal to 11 + 11?\nBecause it's twenty too",
-                        3:f"*What does 1 plus 1 equal? a Dinner for 2",
+                        1:f"Not quite, Keep trying!", 
+                        2:f"Oops, Not quite the answer we're looking for",
+                        3:f"*Good try ! Keep trying",
+                        4:f"Incorrect answer, try again",}
+
+        #   Randomize the dictionary
+        x = r.randrange(1,len(dictionary) + 1)
+
+
+        return dictionary.get(x)
+    
+    
+    def roundover_victorious(self):
+
+        dictionary = {
+                        1:f"Excellent ! Well done", 
+                        2:f"You Nailed it !",
+                        3:f"Keep up the good work",
                         4:f"Incorrect answer",}
 
         #   Randomize the dictionary
@@ -31,6 +46,19 @@ class GameOver():
 
         return dictionary.get(x)
     
+    def game_over(self):
+
+        #   Initializing a dictionary
+        dictionary = {
+            1:f"Game Over.",
+            }
+
+        #   Randomize the dictionary
+        x = r.randrange(1,len(dictionary) + 1)
+
+
+        return dictionary.get(x)
+
     def Computer(self, arg):
 
         #   Initializing variables
