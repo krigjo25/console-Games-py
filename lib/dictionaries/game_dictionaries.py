@@ -13,7 +13,7 @@ class GameOver():
             #   Author : krigjo25
             #   Date   :  12.01-23
 
-            #   Dictionary for Emoji game
+            #   
     '''
     #   arg Game Dictionaries
 

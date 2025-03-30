@@ -5,10 +5,10 @@ import pytest, math as m, test_setup, random as r
 
 test_setup.pytest_environment()
 
-from lib.config. config import GameConfig
+from lib.config.config import GameConfig
 
 #   Configure the testing cases
-class MockGameLogic(GameConfig):
+class MockLogic(GameConfig):
     def __init__(self, score = 0, HP = 3, level = 1):
         super().__init__(score, HP, level)
 
@@ -29,7 +29,7 @@ class TestIGameConfig():
 
         #   Initialize an instance
         player_level = 1
-        instance = MockGameLogic(level = player_level)
+        instance = MockLogic(level = player_level)
 
         #   Initialize an expected result
         result = instance.generate_integers(player_level)
@@ -52,7 +52,7 @@ class TestIGameConfig():
         #   Initialize instance
         with pytest.raises(SystemExit):
 
-            instance = MockGameLogic(HP = 0)
+            instance = MockLogic(HP = 0)
 
             assert instance.quit_game(instance.HP)
 
@@ -64,7 +64,7 @@ class TestIGameConfig():
         player_score = r.randint(0, 10)
         
         #   Initializing instance
-        instance = MockGameLogic(level = player_level, HP=player_HP, score=player_score)
+        instance = MockLogic(level = player_level, HP=player_HP, score=player_score)
         instance.current_stats()
         
         #   Capture print function
@@ -94,7 +94,7 @@ class TestIGameConfig():
     def test_incorrect_answer(self, capsys):
         
         #   Initializing an instance
-        instance = MockGameLogic()
+        instance = MockLogic()
         player_health = instance.HP
 
         instance.incorrect_answer()
@@ -121,11 +121,11 @@ class TestIGameConfig():
     def test_game_level(self, capsys):
 
         #   Initializing an instance
-        instance = MockGameLogic()
+        instance = MockLogic()
         player_score = instance.compare_score
         player_level = instance.player_level
 
-        instance = MockGameLogic(score=player_score)
+        instance = MockLogic(score=player_score)
         instance.game_level()
 
         player_compare_score = int(round(1.5 * 10 * m.sqrt(instance.player_level)))
