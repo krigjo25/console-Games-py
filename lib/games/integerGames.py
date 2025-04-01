@@ -6,7 +6,7 @@ import time as t, random as r
 #   Importing Customized repository
 from lib.config.config import GameConfig
 from lib.debug.logger import GameWatcher
-
+from lib.dictionaries.game_dictionaries import GameOver
 #   Initializing the Logger
 logger = GameWatcher()
 logger.file_handler()
@@ -82,7 +82,25 @@ class GuessTheNumber(GameConfig):
         super().__init__()
         self.logger = logger
         self.logger.warn(f"{self.__class__.__name__} has been initialized")
+        self.n = 0
 
+    def check_answer(self,answer, secret):
+
+        #   Initializing a variable
+        arg = ""
+
+        #   Ensure the answer is equal to the secret
+        if answer == secret:
+
+            self.n = self.generate_integers(self.level)
+            self.correct_answer()
+
+        else:
+            arg = "The guessed number is greater than the answer" if answer > secret else  arg = "The guessed number is lessthan than the answer"
+            
+            self.incorrect_answer(arg)
+
+        
     def run(self):
 
         self.player_hp = 9
@@ -92,9 +110,9 @@ class GuessTheNumber(GameConfig):
         while True:
 
             self.quit_game(self.HP)
-            self.logger.info(f"{self.__class__.__name__} Generated number : {n[0]} Text : {n[1]}")
             answer = input(f'{n[1]}')
 
+            self.logger.info(f"{self.__class__.__name__} Generated number : {n[0]} Text : {n[1]}")
             try :
 
                 #   Ensure that the user has inputted a number
@@ -107,24 +125,8 @@ class GuessTheNumber(GameConfig):
                 self.incorrect_answer(e)
 
             else:
-
-                #   Assign an integer
-                answer = int(answer)
-
-                if answer == n[0]: 
-                        
-                        #   Notify the user about the correct answer
-                        arg = ["Correct answer"]
-                        self.correct_answer(arg)
-
-                        #   Generating new integers
-                        n = self.generate_integers(self.level)
-        
-                else:
-
-                    #   Notify the user about the incorrect answer and decrease the self.HP by one
-                    self.incorrect_answer('Too low, guess higher') if n[0] > int(answer) else self.incorrect_answer('Too high, guess lower')
-
+                self.check_answer(answer, n)
+            
             self.logger.info(f"{self.__class__.__name__} Level : {self.level} Score : {self.score} / {self.compare_score}Time : {t.perf_counter() - start} seconds ")
 
 class LittleProfessor(GameConfig):
@@ -143,28 +145,23 @@ class LittleProfessor(GameConfig):
 
          #   Initializing Game Configurations
         self.HP = 3
-        answer = ""
 
         while True:
-
+            self.quit_game(self.HP)
             n = self.the_little_professor_algorithm(self.player_level)
 
-            self.quit_game(n[0], answer)
-
-            answer = input(f'{n[1]} = :')
+            answer = input(f'Guess a number between (1-{r.randint(n+1, n + 10 )}) :')
 
             try :
 
                 #   Ensure the variable contains an integer
                 if not answer.isnumeric(): 
-                    raise ValueError("The input is not a number")
+                    raise ValueError("The input is not a number\n EEE")
+                if answer != n[0]:
+                    raise Exception('EEE')
 
             except (ValueError, Exception) as e:
 
                 self.incorrect_answer(e)
-
+            
             self.correct_answer(f"Correct answer") if int(answer) == n[0] else self.incorrect_answer(f"EEE")
-
-            #   Breaking out of the loop
-            if self.player_level == 10:
-                return print(f"Score : {self.player_score}\nLevels completed : {self.player_level}")

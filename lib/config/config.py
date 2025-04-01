@@ -124,15 +124,18 @@ class GameConfig():
             param: lvl : int : The level of the game
             return: list : The list contains the generated integer and a string
         """
+
+        #   Algorithm to increase the difficulty
         n = r.randint(0, int(round(1.5 * 10 * m.sqrt(self.player_level))))
-        return [n, f'Guess a number between (1-{r.randint(n+1, n + 10 )}) :']
+
+        return n
 
     def the_little_professor_algorithm(self, lvl:int):
 
         """
             #   Generating the game Algorithm for the game which is level based
         """
-        
+
         #   Initialize an instance
         instance = TheLittleProffessorUtils()
 
@@ -140,34 +143,33 @@ class GameConfig():
         x = self.generate_integers(lvl)
         y = self.generate_integers(lvl)
 
-        #   Initializing a list
-        arg = []
+        operator = instance.mathOperation()
 
+        self.logger.info(f"{self.__class__.__name__}: TLPAlgorithm : \t Returned argument : {x} {operator} {y}")
         #   Matching Mathematic operator
-        match instance.mathOperation():
+        match operator:
 
             case '-':
-                arg.append(abs(x[0] - y[0]))
-                arg.append(f"{x[0]} - {y[0]}=")
+                return [abs(x - y), f"{x} {operator} {y}="]
 
             case '*':
-                arg.append(abs(x[0] * y[0]))
-                arg.append(f"{x[0]} * {y[0]}=")
+                return [abs(x * y), f"{x} {operator} {y}="]
 
             case '/':
-                arg.append(abs(x[0] / y[0]))
-                arg.append(f"{x[0]} / {y[0]}=")
+                return [abs(x / y), f"{x}  {operator} {y}="]
             
             case '//':
-                arg.append(abs(x[0] // y[0]))
-                arg.append(f"{x[0]} // {y[0]}=")
+                return [abs(x // y), f"{x} {operator} {y}="]
+
+            case '%':
+                return [abs(x % y), f"{x} {operator} {y}="]
 
             case _:
-                arg.append(abs(x[0] + y[0]))
-                arg.append(f"{x[0]} + {y[0]}=")
+                return [abs(x + y), f"{x} {operator} {y}="]
+
 
         #   Log the events
-        self.logger.info(f"{self.__class__.__name__}: TLPAlgorithm : \t Returned argument : {arg}")
+        
 
         return arg
 
