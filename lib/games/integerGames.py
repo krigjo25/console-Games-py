@@ -57,6 +57,7 @@ class Crocks(GameConfig):
             elif n[0][0] < n[1][0] and answer == '<':
             
                 self.correct_answer()
+
                 n = [self.generate_integers(self.player_level), self.generate_integers(self.player_level)]
 
             #   Evaulate the answer and ensure that the user has the correct answer
@@ -79,10 +80,14 @@ class GuessTheNumber(GameConfig):
 
     """
     def __init__(self):
+        
         super().__init__()
+
+        self.n = 0
+
         self.logger = logger
         self.logger.warn(f"{self.__class__.__name__} has been initialized")
-        self.n = 0
+        
 
     def check_answer(self,answer, secret):
 
@@ -96,7 +101,7 @@ class GuessTheNumber(GameConfig):
             self.correct_answer()
 
         else:
-            arg = "The guessed number is greater than the answer" if answer > secret else  arg = "The guessed number is lessthan than the answer"
+            arg = "The secret is greater than the the inputed number" if answer > secret else  arg = "The secret is less than the the inputed number"
             
             self.incorrect_answer(arg)
 
@@ -150,18 +155,20 @@ class LittleProfessor(GameConfig):
             self.quit_game(self.HP)
             n = self.the_little_professor_algorithm(self.player_level)
 
-            answer = input(f'Guess a number between (1-{r.randint(n+1, n + 10 )}) :')
+            answer = input(f'Guess a number between (1-{r.randint(n[0]+1, n[0] + 10 )}) :')
 
             try :
 
                 #   Ensure the variable contains an integer
                 if not answer.isnumeric(): 
-                    raise ValueError("The input is not a number\n EEE")
+                    raise ValueError("Input Not A Number")
+
                 if answer != n[0]:
-                    raise Exception('EEE')
+                    raise Exception()
 
             except (ValueError, Exception) as e:
 
-                self.incorrect_answer(e)
-            
-            self.correct_answer(f"Correct answer") if int(answer) == n[0] else self.incorrect_answer(f"EEE")
+                self.incorrect_answer(e) if str(e) == '0' else self.incorrect_answer(f"EEE")
+
+
+            self.correct_answer(f"Correct answer")

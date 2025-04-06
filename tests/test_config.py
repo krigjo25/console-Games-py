@@ -44,10 +44,9 @@ class TestIGameConfig():
         assert 0 <= result[0] <= expected_upper_bound, \
         f"For default level with player level {player_level}" \
         f"output {result[0]} is out of a range 0 - {expected_upper_bound}"
-  
+
     def test_little_professor_algorithm(self, capsys):
         #   Initialize an instance
-        TLPU = TheLittleProffessorUtils()
         instance = MockLogic()
 
         #   Initialize an expected result
@@ -59,7 +58,7 @@ class TestIGameConfig():
         #   Ensuring that the game has a valid message to send
         assert isinstance(result[1], str)
         assert len(result[1]) > 0 & len(result[1]) <= 8
-        
+
 
 
     def test_quit_game(self):
