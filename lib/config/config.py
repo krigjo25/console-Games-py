@@ -143,33 +143,36 @@ class GameConfig():
         x = self.generate_integers(lvl)
         y = self.generate_integers(lvl)
 
+        #   Generating the math operator ( Chance based )
         operator = instance.mathOperation()
 
+        arg = []
+
         self.logger.info(f"{self.__class__.__name__}: TLPAlgorithm : \t Returned argument : {x} {operator} {y}")
+
+
         #   Matching Mathematic operator
         match operator:
 
             case '-':
-                return [abs(x - y), f"{x} {operator} {y}="]
+                arg.append(abs(x - y))
 
             case '*':
-                return [abs(x * y), f"{x} {operator} {y}="]
+                arg.append(abs(x * y))
 
             case '/':
-                return [abs(x / y), f"{x}  {operator} {y}="]
+                arg.append(abs(x / y))
             
             case '//':
-                return [abs(x // y), f"{x} {operator} {y}="]
+                arg.append(abs(x // y))
 
             case '%':
-                return [abs(x % y), f"{x} {operator} {y}="]
+                arg.append(abs(x % y))
 
             case _:
-                return [abs(x + y), f"{x} {operator} {y}="]
-
-
-        #   Log the events
-        
+                arg.append(abs(x + y))
+            
+        arg.append(f"{x} {operator} {y}=")
 
         return arg
 

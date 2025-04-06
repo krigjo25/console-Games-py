@@ -6,6 +6,7 @@ import pytest, math as m, test_setup, random as r
 test_setup.pytest_environment()
 
 from lib.config.config import GameConfig
+from lib.utils.game_utils import TheLittleProffessorUtils
 
 #   Configure the testing cases
 class MockLogic(GameConfig):
@@ -44,8 +45,22 @@ class TestIGameConfig():
         f"For default level with player level {player_level}" \
         f"output {result[0]} is out of a range 0 - {expected_upper_bound}"
   
-    def test_little_professor_algorithm(self):
-        pass
+    def test_little_professor_algorithm(self, capsys):
+        #   Initialize an instance
+        TLPU = TheLittleProffessorUtils()
+        instance = MockLogic()
+
+        #   Initialize an expected result
+        result = instance.the_little_professor_algorithm()
+
+        #   Ensuring that the result is a list
+        self.check_instance(result)
+
+        #   Ensuring that the game has a valid message to send
+        assert isinstance(result[1], str)
+        assert len(result[1]) > 0 & len(result[1]) <= 8
+        
+
 
     def test_quit_game(self):
 
@@ -89,7 +104,6 @@ class TestIGameConfig():
 
         #   Testing with arguments
         assert captured.out == "".join(expected_output)
-
 
     def test_incorrect_answer(self, capsys):
         
