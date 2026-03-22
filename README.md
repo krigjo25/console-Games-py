@@ -1,134 +1,83 @@
-#  Game Collections
-This project comprises a collection of simple, console-based games, written in Python.
-The project functions to demostrates and explores fundamental concepts in game development.
+# Game Collections
+This project is a suite of console-based educational games developed to demonstrate fundamental game development concepts and logic-based challenges.
 
-Users of this code are reminded to respect, and keep the [Academic Honesty Policy](https://cs50.harvard.edu/x/2023/honesty/) in mind.<br>
+## Table of Contents
+1. [Overview](#overview)
+2. [Games Included](#games-included)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Testing](#testing)
+6. [Academic Honesty](#academic-honesty)
+7. [License](#license)
 
-A preview of [CS50P's Problem set 4 | Guessing Game](https://cs50.harvard.edu/python/2022/psets/4/game/).<br>
-A preview of [CS50P's Problem set 4 | Little Proffessor](https://cs50.harvard.edu/python/2022/psets/4/professor/).<br>
+## Overview
+The suite consists of data-driven integer games designed to boost cognitive skills and reinforce arithmetic proficiency through interactive terminal interfaces. It explores core concepts such as random number generation, input validation, and difficulty scaling.
 
+## Games Included
 
-## Games included
-1. **Crocks Game** 
--  TThis number comparion game tasks the player with determining the relationship between a given number and a target number.
--  The player s challenged to guess whether the given number is greater than, equal to or less than the target number.
+### 1. Crocks Game
+A number comparison challenge where players determine the relationship between two randomly generated integers.
+* **Objective**: Guess if the first number is greater than (>), equal to (=), or less than (<) the second number.
+* **Mechanics**: Correct guesses increment the score. Reaching specific milestones increases health, level, and difficulty based on the game logic.
 
-2. **Guess The Number** 
-- This number-guessing game challenges, the player to guess a randomly generated number within a predefined range.
-- The game provides feedback to assist the player and increases in difficulty after each correct guess
+### 2. Guess The Number
+A classic hidden-number game that challenges players to identify a value within a predefined range.
+* **Objective**: Correctly identify the randomly generated number.
+* **Mechanics**: Each correct guess earns points. Accumulating points leads to higher levels and increased difficulty, while incorrect guesses result in health loss.
 
-3. **The Little Proffessor** 
-- This game presents the player with simple arithmetic challenges, involving two integer operands.
-- The player must calculate the correct result and input the answer
-- Designed to reinforce basic arithmetic skills, the game increases in difficulty after each correct answer
-
-### Crocks Game
-Originally implemented as an assignment at Get Academy using [JavaScript](), later translated into [C# Version](https://github.com/krigjo25/console-games-cs/blob/master/lib/Crocks.cs) and Python
-
-Users of this code are reminded to respect, and keep the [Academic Honesty Policy](https://cs50.harvard.edu/x/2023/honesty/) in mind.<br>
-
-
-#### Game rules
-- For every round the game will generate two random numbers.
--   If the key are correctly the computer will generate an answer. There will be an increament of a socre by 1. 
--   When the user has x score the computer will increase health, level & Difficulty based on its algorithm.
--   In this game there is only three characters which is allowed to use to make your guess (`=`, `>`, `<`)
-
-#### Game Goal
-- Your objective is to guess if the first number is (greater than, equal to, or less than) the second number.
-
-####  Usage
-```sh
-USAGE : In your terminal, type app.py -h to view the commands available for the game
-```
-
-
-### Guess the number
-The initial implementation of this application was developed for a CS50P assignment.
-Subsequently a C# version was also implemented as an assignment at Get Academy [C# version](https://github.com/krigjo25/console-games-cs/blob/master/lib/GuessTheNumber.cs).
-
-#### Game rules
-- The game begins with the comupter generating a random number within a defined range.
-- Player's objective is to guess the generated number.
-- A correct guess earns the player a point. The difficulty, the player's level, and health points increases after a specific number of points are earned.
-- An incorrect guess leads to the player losing a health point.
-
-
-### The Little proffesor
-The initial implementation of this application was developed for a CS50P assignment.<br>
-Users of this code are reminded to respect, and keep the [Academic Honesty Policy](https://cs50.harvard.edu/x/2023/honesty/) in mind.
-
-The program utilizes the following mathematical operators
--   Addition, 
--   Substraction,
--   Multiplication
-
-#### Game rules
-- The game begins with the comupter generating a random number within a defined range. The game generates two random integers within a specified range.
-- A correct equation earns the player a point. The difficulty, the player's level, and health points increases after a specific number of points are earned.
-- An incorrect equation leads to the player losing a health point.
-
-
-Thanks for reading, and have a glorious day,
-@krigjo25
+### 3. The Little Professor
+An arithmetic trainer that presents players with mathematical equations involving addition, subtraction, or multiplication.
+* **Objective**: Calculate the correct result of equations involving two integer operands.
+* **Mechanics**: Correct answers increase the score and difficulty. The game reinforces basic arithmetic skills through repetitive practice and escalating challenge levels.
 
 ## Installation
-1. Clone the repository:
-```sh
-# Using SSh 
-ssh git@github.com:krigjo25/Console-Games-py.git
 
-# Using git bash
-git clone https://github.com/krigjo25/Console-Games-py.git
+1. **Clone the repository**:
+   ```sh
+   git clone [https://github.com/krigjo25/Console-Games-py.git](https://github.com/krigjo25/Console-Games-py.git)
+   cd Console-Games-py
+   ```
 
-# Using Github Cli
-gh repo clone Console-Games-py
-```
+2. **Install dependencies**:
+   ```sh
+   pip install -r requirements.txt
+   ```
 
-2. Navigate to the project directory
-```sh
-cd Console-Games-py
-```
-
-3. Install the requirements
-```sh
-pip install -r requirements.txt
-```
-
-4. Run the file
+## Usage
+To start the application suite, run the main entry point:
 ```sh
 python app.py
 ```
-
-## Testing Framework / Data Sets
-The project uses the testing framework <strong>pytest</strong>.
-
+To view available commands and help options, use:
 ```sh
-USEAGE : Type in your terminal pytest <strong>testing/</strong> In order to test the whole dictionary
-
-USEAGE : Type in your terminal pytest <strong>test_intgame -s</strong> to see a more detailed test.
-
-USEAGE : Type in your terminal pytest <strong>test_intgame -k "classname"</strong>, in order to test the classes
-USEAGE : Type in your terminal pytest pytest --html=report.htm
+python app.py -h
 ```
 
-## Credentials
+## Testing
+This project utilizes the pytest framework for quality assurance and automated testing.
 
-### LICENSE
-See the [LICENSE](./LICENSE) file for details.
+* **Run all tests**: 
+  ```sh
+  pytest testing/
+  ```
+* **Detailed test output**: 
+  ```sh
+  pytest test_intgame -s
+  ```
+* **Test specific classes**: 
+  ```sh
+  pytest test_intgame -k "classname"
+  ```
+* **Generate HTML report**: 
+  ```sh
+  pytest --html=report.htm
+  ```
 
-### Contact
-For any questions or suggestions, please open an issue or contact the me at [e-mail](mailto:krigjo25@outlook.com).
+## Academic Honesty
+This project includes implementations inspired by CS50P problem sets. Users are reminded to strictly adhere to the Academic Honesty Policy and use this code for educational reference only.
 
-#### Responsories
+## License
+Distributed under the LICENSE file specifications. See the LICENSE file for full details.
 
--   [pytest - by pytest team](https://github.com/pytest-dev/pytest)
--   [random - by Python developer team]()
--   [requests - by Kenneth Reitz](https://requests.readthedocs.io/en/latest/)<nt>
-
-
-## Notes from the developer
-Created with love, for python programming,
-
-Thanks for reading, and have a glorious rest of the day,
-@krigjo25
+---
+**Developer**: [krigjo25](https://github.com/krigjo25)
